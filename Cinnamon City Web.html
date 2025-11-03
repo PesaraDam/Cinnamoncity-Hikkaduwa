@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinnamon City Hikkaduwa </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d4a574;
+            --bg-dark: #0a0a0a;
+            --bg-card: #161616;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --accent: #8b6f47;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0), rgba(36, 36, 36, 0.95));
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(3px);
+            border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .header-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+    height: 55px;
+    width: auto;
+    display: block;
+}
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('Images/VJRWE5598.JPG') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-gray);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: var(--bg-dark);
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.4);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin: 0 auto 1rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(182px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 30px;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Rooms Section */
+        .rooms {
+            padding: 6rem 3rem;
+            background: var(--bg-card);
+        }
+
+        .rooms h2 {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        .rooms-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .room-card {
+            background: var(--bg-dark);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 165, 116, 0.3);
+        }
+
+        .room-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .room-info {
+            padding: 1.5rem;
+        }
+
+        .room-info h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .room-price {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .room-features {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            max-width: 1000px;
+            margin: 4rem auto;
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            animation: slideUp 0.4s;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: var(--text-light);
+            cursor: pointer;
+            background: var(--bg-dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .close-modal:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        .modal-slider {
+            position: relative;
+            width: 98%;
+            height: 400px;
+            margin-bottom: 1rem;
+            border-radius: 40px;
+            overflow: hidden;
+        }
+
+        .modal-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .modal-slider img.active {
+            display: block;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(212, 165, 116, 0.8);
+            color: var(--bg-dark);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .slider-nav:hover {
+            background: var(--primary);
+        }
+
+        .slider-prev {
+            left: 1rem;
+        }
+
+        .slider-next {
+            right: 1rem;
+        }
+
+        .modal-details {
+            padding: 1rem 0;
+        }
+
+        .modal-details h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-price {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+        }
+
+        .modal-description {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .amenities {
+            margin: 2rem 0;
+        }
+
+        .amenities h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            color: var(--text-gray);
+        }
+
+        .amenity-item::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .book-button {
+            background: var(--primary);
+            color: var(--bg-dark);
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .book-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Location Section */
+        .location {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .location h2 {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--primary);
+            height: 450px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-card);
+            padding: 1rem 1rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-info {
+            margin-bottom: 2rem;
+        }
+
+        .footer-info p {
+            color: var(--text-gray);
+            margin: 0.5rem 0;
+        }
+
+        .social-links {
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .rooms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 2rem 1rem;
+                padding: 1.5rem;
+            }
+
+            .modal-slider {
+                height: 250px;
+            }
+
+            .modal-details h2 {
+                font-size: 1.8rem;
+            }
+
+            .about h2,
+            .rooms h2,
+            .location h2 {
+                font-size: 2rem;
+            }
+
+            .amenities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+    <img src="images/logo.png" alt="Cinnamon City Hotel">
+</div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#rooms">Rooms</a>
+                <a href="#location">Location</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Cinnamon City Hikkaduwa</h1>
+            <p>Experience Premium Luxury</p>
+            <a href="#rooms" class="cta-button">Explore Our Rooms</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>🌴 Welcome to Cinnamon City Hikkaduwa 🌴</h2>
+        <p>Ayubowan!</p>
+        <p>We’re delighted to have you with us at Cinnamon City, your cozy home away from home in the heart of Hikkaduwa.
+
+        <p>Nestled just minutes from the golden beach, our little haven blends island charm with modern comfort — where every sunrise brings the promise of calm seas, warm smiles, and unforgettable memories.
+
+<p>✨ Relax. Explore. Enjoy.
+<p>Welcome to the Cinnamon City family — where every moment is a reason to smile. 🌅
+
+Warm regards,
+The Cinnamon City Hikkaduwa Team</p>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🏖️</div>
+                <h3>Close to the Beach</h3>
+                <p>Just a short stroll from Hikkaduwa’s golden sands</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛏️</div>
+                <h3>Comfortable Rooms</h3>
+                <p>Spacious, cozy, and designed for pure relaxation.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💸</div>
+                <h3>Great Value</h3>
+                <p>Enjoy premium comfort without breaking your budget 💰</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📶</div>
+                <h3>Free Wi-Fi</h3>
+                <p>Stay connected while you relax in paradise.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌞</div>
+                <h3>Friendly Staff</h3>
+                <p>Our team is always ready with a warm Sri Lankan smile</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section id="rooms" class="rooms">
+        <h2>Our Signature Rooms</h2>
+        <div class="rooms-grid">
+            <!-- Room 1 -->
+            <div class="room-card" onclick="openModal(0)">
+                <img src="Images/Budget Double Room/509433767.jpg" alt="Deluxe Ocean View" class="room-image">
+                <div class="room-info">
+                    <h3>Budget Double Room</h3>
+                    <p class="room-price">$177 / night</p>
+                    <p class="room-features">• Queen Bed • Ensuite bathroom • 19m²</p>
+                </div>
+            </div>
+
+            <!-- Room 2 -->
+            <div class="room-card" onclick="openModal(1)">
+                <img src="Images/Superior Apartment with Balcony/638309902.jpg" alt="Premium Suite" class="room-image">
+                <div class="room-info">
+                    <h3>Superior Apartment</h3>
+                    <p class="room-price">$297 / night</p>
+                    <p class="room-features">• King Bed • Private kitchen • Balcony</p>
+                </div>
+            </div>
+
+            <!-- Room 3 -->
+            <div class="room-card" onclick="openModal(2)">
+                <img src="Images/Luxury Triple Room/507845431.jpg" alt="Family Room" class="room-image">
+                <div class="room-info">
+                    <h3>Luxury Triple Room</h3>
+                    <p class="room-price">$247 / night</p>
+                    <p class="room-features">• King Bed • 19m² • Air conditioning</p>
+                </div>
+            </div>
+
+            <!-- Room 4 -->
+            <div class="room-card" onclick="openModal(3)">
+                <img src="Images/Apartment with Balcony/331223521.jpg" alt="Honeymoon Suite" class="room-image">
+                <div class="room-info">
+                    <h3>Apartment with Balcony</h3>
+                    <p class="room-price">$328 / night</p>
+                    <p class="room-features">• King Bed • Entire apartment • 84m²</p>
+                </div>
+            </div>
+
+            <!-- Room 5 -->
+            <div class="room-card" onclick="openModal(4)">
+                <img src="Images/Luxury Triple Room 2/509433595.jpg" alt="Standard Room" class="room-image">
+                <div class="room-info">
+                    <h3>Luxury Triple Room</h3>
+                    <p class="room-price">$161 / night</p>
+                    <p class="room-features">• Queen Bed • City View • 35m² • Terrace</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="location">
+        <h2>“Lost.? Here’s the Way”</h2>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4746.865792954504!2d80.09841457571204!3d6.14240522747315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae177f5358b04a1%3A0xc75d7f916a6e722f!2sCinnamon%20City!5e1!3m2!1sen!2slk!4v1762174742502!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Cinnamon City Hikkaduwa</h3>
+                <p>📍 No:29, Kuruduwattha, Hikkaduwa, Sri Lanka</p>
+                <p>📞 +94 77 370 6061 | +94 76 934 9742</p>
+                <p>✉️ cinnamoncityhikkaduwa@gmail.com</p>
+            </div>
+            <div class="social-links">
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="Twitter">🐦</a>
+            </div>
+            <p style="color: var(--text-gray); margin-top: 2rem;">© 2K25 Cinnamon City Hikkaduwa. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="roomModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            
+            <div class="modal-slider">
+                <img src="" alt="Room Image" class="slider-image">
+                <button class="slider-nav slider-prev" onclick="changeSlide(-1)">‹</button>
+                <button class="slider-nav slider-next" onclick="changeSlide(1)">›</button>
+            </div>
+
+            <div class="modal-details">
+                <h2 id="modalTitle"></h2>
+                <p class="modal-price" id="modalPrice"></p>
+                <p class="modal-description" id="modalDescription"></p>
+                
+                <div class="amenities">
+                    <h3>Room Amenities</h3>
+                    <div class="amenities-grid" id="modalAmenities"></div>
+                </div>
+
+                <a href="https://www.booking.com/hotel/lk/cinnamon-city.html?label=gen173nr-10CBkoggI46AdIM1gEaIUBiAEBmAEzuAEXyAEM2AED6AEB-AEBiAIBqAIBuAK0z6LIBsACAdICJDEwYmMyNGQwLTJlYzctNDY4My1iNTJlLTUzODI0NTdmOTgxNtgCAeACAQ&sid=c90e0e308c1be418d67ee2a88008684c" target="_blank" class="book-button">Book Now on Booking.com</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Room Data
+        const roomsData = [
+            {
+                name: "Budget Double Room",
+                price: "$177 / night",
+                description: "The double room features a seating area and a dining area, as well as a private bathroom boasting a shower. The double room provides an electric kettle and a tiled floor. The unit has 1 bed.",
+                images: [
+                    "Images/Budget Double Room/509433767.jpg",
+                    "Images/Budget Double Room/509434356.jpg",
+                    "Images/Budget Double Room/509434460.jpg",
+                    "Images/Budget Double Room/331224587.jpg",
+                    "Images/Budget Double Room/509417890.jpg",
+                    "Images/Budget Double Room/331225216.jpg",
+                    "Images/Budget Double Room/509417942.jpg",
+                    "Images/Budget Double Room/509417747.jpg",
+                    "Images/Budget Double Room/509434639.jpg",
+                    "Images/Budget Double Room/507529886.jpg",
+                    "Images/Budget Double Room/517135752.jpg",
+                    "Images/Budget Double Room/517136084.jpg",
+                    "Images/Budget Double Room/517136298.jpg",
+                    "Images/Budget Double Room/517136547.jpg",
+                    "Images/Budget Double Room/517136779.jpg"
+                ],
+                amenities: [
+                    "Queen Size Canopy Bed",
+                    "Desk",
+                    "19m² Space",
+                    "Free WiFi",
+                    "Drying rack for clothing",
+                    "Refrigerator",
+                    "Dining table",
+                    "Electric kettle",
+                    "Private Bathroom",
+                    "Complimentary Toiletries",
+                    "Towels",
+                    "Electric kettle"
+                ]
+            },
+            {
+                name: "Superior Apartment with Balcony",
+                price: "$297 / night",
+                description: "Featuring 1 bedroom, this apartment offers 1 bathroom with a shower, a seating area and terrace where you can relax. The well-fitted kitchen features a refrigerator, kitchenware and an electric kettle. The apartment provides air conditioning, a washing machine, as well as a patio and a balcony. The unit has 1 bed.",
+                images: [
+                    "Images/Superior Apartment with Balcony/638309343.jpg",
+                    "Images/Superior Apartment with Balcony/638309559.jpg",
+                    "Images/Superior Apartment with Balcony/638309902.jpg",
+                    "Images/Superior Apartment with Balcony/638307667.jpg",
+                    "Images/Superior Apartment with Balcony/638307318.jpg",
+                    "Images/Superior Apartment with Balcony/638306835.jpg",
+                    "Images/Superior Apartment with Balcony/638306472.jpg",
+                    "Images/Superior Apartment with Balcony/638308314.jpg",
+                    "Images/Superior Apartment with Balcony/638308975.jpg",
+                    "Images/Superior Apartment with Balcony/638310108.jpg"
+                ],
+                amenities: [
+                    "King Size Canopy Bed",
+                    "Entire apartment",
+                    "Balcony",
+                    "19m² Space",
+                    "Kitchen",
+                    "Dining table",
+                    "Drying rack for clothing",
+                    "Desk",
+                    "Private Bathroom",
+                    "Towels",
+                    "Complimentary Toiletries",
+                    "Air conditioning"
+                ]
+            },
+            {
+                name: "Luxury Triple Room",
+                price: "$247 / night",
+                description: "This air-conditioned triple room features a private bathroom, a seating area, a dining area as well as a terrace. The unit offers 1 bed.",
+                images: [
+                    "Images/Luxury Triple Room/507845431.jpg",
+                    "Images/Luxury Triple Room/331188805.jpg",
+                    "Images/Luxury Triple Room/509433933.jpg",
+                    "Images/Luxury Triple Room/331224587.jpg",
+                    "Images/Luxury Triple Room/331225216.jpg",
+                    "Images/Luxury Triple Room/509417890.jpg",
+                    "Images/Luxury Triple Room/509417747.jpg",
+                    "Images/Luxury Triple Room/509417942.jpg",
+                    "Images/Luxury Triple Room/331223877.jpg",
+                    "Images/Luxury Triple Room/507844679.jpg",
+                    "Images/Luxury Triple Room/517135752.jpg",
+                    "Images/Luxury Triple Room/517136084.jpg",
+                    "Images/Luxury Triple Room/517136298.jpg",
+                    "Images/Luxury Triple Room/517136547.jpg",
+                    "Images/Luxury Triple Room/517136779.jpg"
+                ],
+                amenities: [
+                    "King Size Canopy Bed",
+                    "Terrace",
+                    "19m² Space",
+                    "Free WiFi",
+                    "Air Conditioning",
+                    "Dining table",
+                    "Drying rack for clothing",
+                    "Coffee & Tea Facilities",
+                    "Dining area",
+                    "Tile/marble floor",
+                    "Private Bathroom",
+                    "Complimentary Toiletries"
+                ]
+            },
+            {
+                name: "Apartment with Balcony",
+                price: "$328 / night",
+                description: "This spacious apartment is comprised of 1 living room, 1 separate bedroom and 1 bathroom with a shower. The fully equipped kitchen features a refrigerator, kitchenware and an electric kettle. Featuring a terrace with city views, this apartment also offers air conditioning and a flat-screen TV. The unit offers 1 bed.",
+                images: [
+                    "Images/Apartment with Balcony/331223521.jpg",
+                    "Images/Apartment with Balcony/331223519.jpg",
+                    "Images/Apartment with Balcony/331224587.jpg",
+                    "Images/Apartment with Balcony/331224690.jpg",
+                    "Images/Apartment with Balcony/331224692.jpg",
+                    "Images/Apartment with Balcony/502792973.jpg",
+                    "Images/Apartment with Balcony/502794078.jpg",
+                    "Images/Apartment with Balcony/502793972.jpg",
+                    "Images/Apartment with Balcony/502793895.jpg",
+                    "Images/Apartment with Balcony/502794218.jpg",
+                    "Images/Apartment with Balcony/502792778.jpg",
+                    "Images/Apartment with Balcony/502793754.jpg",
+                    "Images/Apartment with Balcony/502793695.jpg",
+                    "Images/Apartment with Balcony/502793841.jpg",
+                    "Images/Apartment with Balcony/502793163.jpg",
+                    "Images/Apartment with Balcony/502793433.jpg",
+                    "Images/Apartment with Balcony/502793623.jpg",
+                    "Images/Apartment with Balcony/502793319.jpg",
+                    "Images/Apartment with Balcony/331225978.jpg",
+                    "Images/Apartment with Balcony/331225194.jpg",
+                    "Images/Apartment with Balcony/331225632.jpg"
+                ],
+                amenities: [
+                    "King Size Canopy Bed",
+                    "Terrace",
+                    "Entire apartment",
+                    "84m² Space",
+                    "City view",
+                    "Air conditioning",
+                    "Flat-screen TV",
+                    "Balcony",
+                    "Drying rack for clothing",
+                    "Refrigerator",
+                    "Private bathroom",
+                    "Complimentary Toiletries"
+                ]
+            },
+            {
+                name: "Luxury Triple Room",
+                price: "$161 / night",
+                description: "A seating area, a desk, a terrace and a private bathroom are available in this spacious triple room. The unit has 1 bed.",
+                images: [
+                    "Images/Luxury Triple Room 2/509433595.jpg",
+                    "Images/Luxury Triple Room 2/507840796.jpg",
+                    "Images/Luxury Triple Room 2/509434927.jpg",
+                    "Images/Luxury Triple Room 2/331224587.jpg",
+                    "Images/Luxury Triple Room 2/331225216.jpg",
+                    "Images/Luxury Triple Room 2/509417747.jpg",
+                    "Images/Luxury Triple Room 2/509417890.jpg",
+                    "Images/Luxury Triple Room 2/509417942.jpg",
+                    "Images/Luxury Triple Room 2/517135752.jpg",
+                    "Images/Luxury Triple Room 2/517136084.jpg",
+                    "Images/Luxury Triple Room 2/517136298.jpg",
+                    "Images/Luxury Triple Room 2/517136547.jpg",
+                    "Images/Luxury Triple Room 2/517136779.jpg"
+                ],
+                amenities: [
+                    "Queen Size Bed",
+                    "Terrace",
+                    "35m² Space",
+                    "Free WiFi",
+                    "Fan",
+                    "Dining table",
+                    "Drying rack for clothing",
+                    "Socket near the bed",
+                    "Dining area",
+                    "Tile/marble floor",
+                    "Private bathroom",
+                    "Complimentary Toiletries"
+                ]
+            }
+        ];
+
+        let currentRoom = 0;
+        let currentSlide = 0;
+
+        function openModal(roomIndex) {
+            currentRoom = roomIndex;
+            currentSlide = 0;
+            const room = roomsData[roomIndex];
+            
+            document.getElementById('modalTitle').textContent = room.name;
+            document.getElementById('modalPrice').textContent = room.price;
+            document.getElementById('modalDescription').textContent = room.description;
+            
+            // Set amenities
+            const amenitiesContainer = document.getElementById('modalAmenities');
+            amenitiesContainer.innerHTML = '';
+            room.amenities.forEach(amenity => {
+                const div = document.createElement('div');
+                div.className = 'amenity-item';
+                div.textContent = amenity;
+                amenitiesContainer.appendChild(div);
+            });
+            
+// Setup slider
+            const modal = document.getElementById('roomModal');
+            const sliderContainer = modal.querySelector('.modal-slider');
+            sliderContainer.innerHTML = '';
+
+            room.images.forEach((img, index) => {
+                const imgElement = document.createElement('img');
+                imgElement.src = img;
+                imgElement.alt = `${room.name} - Image ${index + 1}`;
+                imgElement.className = 'slider-image';
+                if (index === 0) imgElement.classList.add('active');
+                sliderContainer.appendChild(imgElement);
+            });
+
+            // Add navigation buttons
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'slider-nav slider-prev';
+            prevBtn.innerHTML = '‹';
+            prevBtn.onclick = () => changeSlide(-1);
+            
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'slider-nav slider-next';
+            nextBtn.innerHTML = '›';
+            nextBtn.onclick = () => changeSlide(1);
+            
+            sliderContainer.appendChild(prevBtn);
+            sliderContainer.appendChild(nextBtn);
+            
+            // Show modal
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('roomModal').classList.remove('active');
+        }
+
+        function changeSlide(direction) {
+            const room = roomsData[currentRoom];
+            const slides = document.querySelectorAll('.modal-slider .slider-image');
+            
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + room.images.length) % room.images.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('roomModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
